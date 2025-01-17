@@ -11,11 +11,14 @@ import {
   Rating,
   Chip,
   Typography,
+  TextField,
 } from '@mui/material';
 
 function Books() {
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState('');
+  const [filteredBooks, setFilteredBooks] = useState ([]);
 
   useEffect(() => {
     if (books.length === 0) {
@@ -28,6 +31,9 @@ function Books() {
     try {
       const response = await axios.get('http://localhost:3000/books');
       setBooks(response.data);
+
+      setFilteredBooks(response.data);
+
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -35,11 +41,36 @@ function Books() {
   }
 
   // TODO: Implement search functionality
+   
+    const handleInputChange = (event) => {
+      //event.preventDefault ();
+     const searchInput = event.target.value.toLowerCase();
+     setSearch(searchInput);
+     console.log(searchInput);
+
+
+    if (searchInput === '') {
+      setFilteredBooks(books);
+    }
+    else{
+      const filteredBooks = books.filter((book) => 
+        book.author.toLowerCase(). includes(searchInput)||
+        book.name.toLowerCase().includes (searchInput) ||
+        book.genres.some((genre) => genre.toLowerCase().includes(searchInput))
+      );
+      setFilteredBooks(filteredBooks);
+    }
+  }
+
+
   return (
     <Box sx={{ mx: 'auto', p: 2 }}>
       {isLoading && <CircularProgress />}
       {!isLoading && (
         <div>
+          
+          <TextField type="text" value={search} label="search" onChange={handleInputChange}></TextField>
+
           <Stack
             sx={{ justifyContent: 'space-around' }}
             spacing={{ xs: 1 }}
@@ -47,7 +78,7 @@ function Books() {
             useFlexGap
             flexWrap="wrap"
           >
-            {books.map((book) => (
+            {filteredBooks.map((book) => (
               <Card
                 sx={{
                   display: 'flex',
