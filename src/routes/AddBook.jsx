@@ -16,6 +16,7 @@ import { Stack, Typography } from '@mui/material';
 function AddBook() {
   const { alert, post } = useAxios('http://localhost:3001');
   const [rateValue, setRateValue] = useState(3);
+  //const [hover, setHover] = useState (0);
   const [book, setBook] = useState({
     author: '',
     name: '',
@@ -34,13 +35,12 @@ function AddBook() {
     });
   };
 
-  const rateChangeHandler = (event) => {
-    const { value } = event.target;
-    setBook({
-      ...book,
-      stars: value,
-    });
-  };
+  // const rateChangeHandler = (event, newValue) => {
+  //   setBook((book)=> ({
+  //     ...book,
+  //     stars: newValue,
+  //   }));
+  // };
 
   const addBookHandler = (e) => {
     const { name, value, checked, type } = e.target;
@@ -112,12 +112,20 @@ function AddBook() {
           <Rating
             name="stars"
             value={rateValue}
-            onClick={rateChangeHandler}
+            //onClick={rateChangeHandler}
             size="large"
             onChange={(event, newValue) => {
               setRateValue(newValue);
+              //rateChangeHandler(event, newValue);
             }}
+            onChangeActive={(event, setHover)=> {
+              if (setHover !== -1) {
+                setRateValue(setHover); 
+              }}}
           />
+            <Typography variant="subtitle1">
+            {rateValue !== null ? `Rating: ${rateValue}` : ' '}
+          </Typography>
         </Stack>
         <Button variant="contained" type="submit">
           Add new
