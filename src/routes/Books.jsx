@@ -12,10 +12,12 @@ import {
   Chip,
   Typography,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 function Books() {
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (books.length === 0) {
@@ -32,6 +34,10 @@ function Books() {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  const handleNavigate = (id) => { navigate (`/book/${id}`);
+  //console.log(id);
   }
 
   // TODO: Implement search functionality
@@ -91,7 +97,7 @@ function Books() {
                     readOnly
                     size="small"
                   />
-                  <Button size="small">Learn More</Button>
+                  <Button size="small" onClick={() => handleNavigate(book.id)}>Learn More</Button>
                 </CardActions>
               </Card>
             ))}
