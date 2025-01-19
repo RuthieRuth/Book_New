@@ -12,9 +12,10 @@ import { DateField } from '@mui/x-date-pickers/DateField';
 import useAxios from '../services/useAxios';
 import { bookGenres } from '../genres';
 import { Stack, Typography } from '@mui/material';
+import defaultBook from '../assets/defaultBook.svg';
 
 function AddBook() {
-  const { alert, post } = useAxios('http://localhost:3001');
+  const { alert, post } = useAxios('http://localhost:3000');
   const [rateValue, setRateValue] = useState(3);
   const [book, setBook] = useState({
     author: '',
@@ -24,6 +25,7 @@ function AddBook() {
     start: null,
     end: null,
     stars: null,
+    img: defaultBook, // missing parameter on the form. Also in postHandler function
   });
 
   const genreChangeHandler = (event) => {
@@ -51,8 +53,29 @@ function AddBook() {
     }
   };
 
+   /*
   function postHandler() {
     post('books', book);
+  }
+  */
+
+  async function postHandler() {
+    try{
+      const response = await post ('books', book);
+      if (response.status === 201) {
+        setBook ({
+          author: '',
+          name: '',
+          genres: [],
+          completed: false,
+          start: null,
+          end: null,
+          stars: null,
+          img: '' 
+        })
+      }
+    }
+    catch (error) {console.log(error)}
   }
 
   return (
