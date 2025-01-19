@@ -14,7 +14,7 @@ import { bookGenres } from '../genres';
 import { Stack, Typography } from '@mui/material';
 
 function AddBook() {
-  const { alert, post } = useAxios('http://localhost:3001');
+  const { alert, post } = useAxios('http://localhost:3000');
   const [rateValue, setRateValue] = useState(3);
   const [book, setBook] = useState({
     author: '',
@@ -51,8 +51,28 @@ function AddBook() {
     }
   };
 
+  /*
   function postHandler() {
     post('books', book);
+  }
+  */
+
+  async function postHandler() {
+    try{
+      const response = await post ('books', book);
+      if (response.status === 201) {
+        setBook ({
+          author: '',
+          name: '',
+          genres: [],
+          completed: false,
+          start: null,
+          end: null,
+          stars: null,
+        })
+      }
+    }
+    catch (error) {console.log(error)}
   }
 
   return (
