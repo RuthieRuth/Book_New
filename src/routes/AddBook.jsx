@@ -14,7 +14,7 @@ import { bookGenres } from '../genres';
 import { Stack, Typography } from '@mui/material';
 
 function AddBook() {
-  const { alert, post } = useAxios('http://localhost:3001');
+  const { alert, post, showAlert } = useAxios('http://localhost:3000');
   const [rateValue, setRateValue] = useState(3);
   const [book, setBook] = useState({
     author: '',
@@ -51,8 +51,30 @@ function AddBook() {
     }
   };
 
+  /*
   function postHandler() {
     post('books', book);
+  }
+  */
+
+  async function postHandler() {
+    try{
+      const response = await post ('books', book);
+      if (response.status === 201) {
+        showAlert('Book added successfully', 'success');
+        setBook ({
+          author: '',
+          name: '',
+          genres: [],
+          completed: false,
+          start: null,
+          end: null,
+          stars: null,
+        })
+      }
+    }
+    catch (error) {console.log(error)}
+    showAlert('error');
   }
 
   return (
@@ -62,7 +84,7 @@ function AddBook() {
         alignItems="stretch"
         sx={{ my: 2, mx: 'auto', width: '25%' }}
       >
-        {alert.show && <Alert severity={alert.type}>{alert.message}</Alert>}
+        {alert.show && <Alert severity={alert.type} autoHideDuration={5000}>{alert.message}</Alert>}
         <Typography variant="h4" component="h2" sx={{ my: 10 }}>
           Add a book
         </Typography>
