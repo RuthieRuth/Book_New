@@ -74,7 +74,7 @@ function AddBook() {
       }
     }
     catch (error) {console.log(error)}
-    showAlert('error');
+    showAlert('error'); // this creates an error wen the full message is written here
   }
 
   return (
