@@ -13,14 +13,22 @@ import {
   Typography,
   TextField,
 } from '@mui/material';
+<<<<<<< HEAD
 //import useAxios from '../hooks/useAxios';
+=======
+import { useNavigate } from 'react-router-dom';
+>>>>>>> 108-01
 
 // function to display books to viewer
 function Books() {
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+<<<<<<< HEAD
   const [search, setSearch] = useState('');
   const [filteredBooks, setFilteredBooks] = useState ([]);
+=======
+  const navigate = useNavigate();
+>>>>>>> 108-01
 
   // a side effect that tells it to watch and make sure that if the number of books shown currently is 0, then go grab all books
   useEffect(() => {
@@ -41,6 +49,10 @@ function Books() {
     } catch (error) {
       console.error(error);
     }
+  }
+
+  const handleNavigate = (id) => { navigate (`/book/${id}`);
+  //console.log(id);
   }
 
   // TODO: Implement search functionality
@@ -125,7 +137,7 @@ function Books() {
                     readOnly
                     size="small"
                   />
-                  <Button size="small">Learn More</Button>
+                  <Button size="small" onClick={() => handleNavigate(book.id)}>Learn More</Button>
                 </CardActions>
               </Card>
             ))}
