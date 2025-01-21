@@ -11,6 +11,7 @@ import {
   Rating,
   Chip,
   Typography,
+  TextField,
 } from '@mui/material';
 //import useAxios from '../hooks/useAxios';
 
@@ -18,7 +19,8 @@ import {
 function Books() {
   const [books, setBooks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  //const { get, data} = useAxios('http://localhost:3000/books');
+  const [search, setSearch] = useState('');
+  const [filteredBooks, setFilteredBooks] = useState ([]);
 
   // a side effect that tells it to watch and make sure that if the number of books shown currently is 0, then go grab all books
   useEffect(() => {
@@ -32,6 +34,9 @@ function Books() {
     try {
       const response = await axios.get('http://localhost:3000/books');
       setBooks(response.data);
+
+      setFilteredBooks(response.data);
+
       setIsLoading(false);
     } catch (error) {
       console.error(error);
@@ -39,11 +44,36 @@ function Books() {
   }
 
   // TODO: Implement search functionality
+   
+    const handleInputChange = (event) => {
+      //event.preventDefault ();
+     const searchInput = event.target.value.toLowerCase();
+     setSearch(searchInput);
+     console.log(searchInput);
+
+
+    if (searchInput === '') {
+      setFilteredBooks(books);
+    }
+    else{
+      const filteredBooks = books.filter((book) => 
+        book.author.toLowerCase(). includes(searchInput)||
+        book.name.toLowerCase().includes (searchInput) ||
+        book.genres.some((genre) => genre.toLowerCase().includes(searchInput))
+      );
+      setFilteredBooks(filteredBooks);
+    }
+  }
+
+
   return (
     <Box sx={{ mx: 'auto', p: 2 }}>
       {isLoading && <CircularProgress />}
       {!isLoading && (
         <div>
+          
+          <TextField type="text" value={search} label="search" onChange={handleInputChange}></TextField>
+
           <Stack
             sx={{ justifyContent: 'space-around' }}
             spacing={{ xs: 1 }}
@@ -51,7 +81,7 @@ function Books() {
             useFlexGap
             flexWrap="wrap"
           >
-            {books.map((book) => (
+            {filteredBooks.map((book) => (
               <Card
                 sx={{
                   display: 'flex',
