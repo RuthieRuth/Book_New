@@ -81,6 +81,18 @@
       "end": null,
       "stars": "5",
       "id": 6
+    },
+    {
+      "author": "George Orwell",
+      "name": "Animal Farm",
+      "genres": [
+        "Children's Books"
+      ],
+      "completed": true,
+      "start": null,
+      "end": null,
+      "stars": "5",
+      "id": 7
     }
   ]
 }

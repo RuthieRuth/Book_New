@@ -16,7 +16,7 @@ import { Stack, Typography } from '@mui/material';
 
 //function to add new book to the current books available already
 function AddBook() {
-  const { alert, post, showAlert } = useAxios('http://localhost:3000');
+  const { alert, post } = useAxios('http://localhost:3000');
   const [rateValue, setRateValue] = useState(3);
   //const [hover, setHover] = useState (0);
   const [book, setBook] = useState({
@@ -67,7 +67,6 @@ function AddBook() {
     try{
       const response = await post ('books', book);
       if (response.status === 201) {
-        showAlert('Book added successfully', 'success');
         setBook ({
           author: '',
           name: '',
@@ -80,11 +79,8 @@ function AddBook() {
       }
     }
     catch (error) {console.log(error)}
-    showAlert('error'); // this creates an error wen the full message is written here
   }
 
-
-  // the function handles the inputs and event that takes place within the form. 
   return (
     <form onChange={addBookHandler} onSubmit={postHandler}>
       <Stack
