@@ -54,7 +54,7 @@
       "start": "2023-06-15",
       "end": "2023-07-10",
       "stars": 5,
-      "img": "https://m.media-amazon.com/images/W/MEDIAX_792452-T2/images/I/61pX0NiXdvL._AC_.jpg"
+      "img": "https://upload.wikimedia.org/wikipedia/en/6/6b/Harry_Potter_and_the_Philosopher%27s_Stone_Book_Cover.jpg"
     },
     {
       "author": "David JP Phillips",
@@ -68,6 +68,19 @@
       "stars": "5",
       "id": 5,
       "img": "https://www.davidjpphillips.com/wp-content/uploads/2023/08/highonlife_copy-195x300.jpg"
+    },
+    {
+      "author": "trying",
+      "name": "One step at a time",
+      "genres": [
+        "Adventure",
+        "Non-Fiction"
+      ],
+      "completed": true,
+      "start": null,
+      "end": null,
+      "stars": "5",
+      "id": 6
     }
   ]
 }
