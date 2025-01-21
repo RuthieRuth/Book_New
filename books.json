@@ -70,6 +70,19 @@
       "img": "https://www.davidjpphillips.com/wp-content/uploads/2023/08/highonlife_copy-195x300.jpg"
     },
     {
+      "author": "hmm",
+      "name": "Hope I make it",
+      "genres": [
+        "Mystery"
+      ],
+      "completed": true,
+      "start": null,
+      "end": null,
+      "stars": "5",
+      "img": "/src/assets/defaultBook.svg",
+      "id": 6
+    },
+    {
       "author": "trying",
       "name": "One step at a time",
       "genres": [

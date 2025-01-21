@@ -12,6 +12,7 @@ import { DateField } from '@mui/x-date-pickers/DateField';
 import useAxios from '../services/useAxios';
 import { bookGenres } from '../genres';
 import { Stack, Typography } from '@mui/material';
+import defaultBook from '../assets/defaultBook.svg';
 
 
 //function to add new book to the current books available already
@@ -27,6 +28,7 @@ function AddBook() {
     start: null,
     end: null,
     stars: null,
+    img: defaultBook, // missing parameter on the form. Also in postHandler function
   });
 
     // choosing the genre of book. add a new book with genre(s). if book falls under more than one genre, split the types with ','.
@@ -57,28 +59,8 @@ function AddBook() {
     }
   };
 
-  /*
   function postHandler() {
     post('books', book);
-  }
-  */
-
-  async function postHandler() {
-    try{
-      const response = await post ('books', book);
-      if (response.status === 201) {
-        setBook ({
-          author: '',
-          name: '',
-          genres: [],
-          completed: false,
-          start: null,
-          end: null,
-          stars: null,
-        })
-      }
-    }
-    catch (error) {console.log(error)}
   }
 
   return (
