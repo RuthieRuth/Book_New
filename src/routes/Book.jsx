@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import data from '../../books.json'; // Import the entire JSON object
-import { Button } from "@mui/material";
+import { Box, Button, Card, CardMedia, Stack, Typography } from "@mui/material";
 
 //const fallbackImage = 'https://via.placeholder.com/150'; 
 
@@ -29,13 +29,57 @@ const Book = () => {
 
     return (
         <div>
-            <img src={book.img} alt="image" 
+
+            <Box sx={{ mx: 'auto', p: 2 }}>
+                <Stack
+                sx={{ justifyContent: 'space-around' }}
+                spacing={{ xs: 1 }}
+                direction="row"
+                useFlexGap
+                flexWrap="wrap"
+                >
+
+                <Card
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  width: '15%',
+                  minWidth: 200,
+                }}
+                key={book.name}
+                >
+
+                <CardMedia
+                  sx={{ height: 250 }}
+                  image={book.img}
+                  title={book.name}
+                />  
+
+                <Typography variant="h6" component="h2" sx={{ mt: 2 }}>
+                    {book.name}
+                </Typography>
+                <Typography variant="subtitle1" gutterBottom>
+                    {book.author}
+                </Typography>
+
+                <Button onClick={() => navigate(-1)}>Back to list</Button>
+
+              </Card>
+
+                </Stack>
+            
+
+            </Box>
+
+            {/* <img src={book.img} alt="image" 
             //onError={(e) => e.target.src = fallbackImage} 
             />
             <p>{book.name}</p>
             <p>{book.author}</p>
 
-            <Button onClick={() => navigate(-1)}>Back to list</Button>
+            <Button onClick={() => navigate(-1)}>Back to list</Button> */}
+
+
         </div>
     );
 };
