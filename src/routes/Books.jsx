@@ -12,11 +12,13 @@ import {
   Chip,
   Typography,
 } from '@mui/material';
+//import useAxios from '../hooks/useAxios';
 
 // function to display books to viewer
 function Books() {
-  const [books, setBooks] = useState([]); // to check the current state of books 
-  const [isLoading, setIsLoading] = useState(true); // to check the current loading state 
+  const [books, setBooks] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  //const { get, data} = useAxios('http://localhost:3000/books');
 
   // a side effect that tells it to watch and make sure that if the number of books shown currently is 0, then go grab all books
   useEffect(() => {
