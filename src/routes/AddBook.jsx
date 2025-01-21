@@ -16,9 +16,10 @@ import { Stack, Typography } from '@mui/material';
 
 //function to add new book to the current books available already
 function AddBook() {
-  const { alert, post } = useAxios('http://localhost:3001');// get and retrieve data from localhost using axios
-  const [rateValue, setRateValue] = useState(3); // if the rating is already known, give its value eg: rating of 3 
-  const [book, setBook] = useState({ //getting values of new book and when to capture new values of new book from these inputs:
+  const { alert, post } = useAxios('http://localhost:3001');
+  const [rateValue, setRateValue] = useState(3);
+  //const [hover, setHover] = useState (0);
+  const [book, setBook] = useState({
     author: '',
     name: '',
     genres: [], // a collection of boook types kept in an array
@@ -120,12 +121,20 @@ function AddBook() {
           <Rating
             name="stars"
             value={rateValue}
-            onClick={rateChangeHandler}
+            //onClick={rateChangeHandler}
             size="large"
             onChange={(event, newValue) => {
               setRateValue(newValue);
+              //rateChangeHandler(event, newValue);
             }}
+            onChangeActive={(event, setHover)=> {
+              if (setHover !== -1) {
+                setRateValue(setHover); 
+              }}}
           />
+            <Typography variant="subtitle1">
+            {rateValue !== null ? `Rating: ${rateValue}` : ' '}
+          </Typography>
         </Stack>
         <Button variant="contained" type="submit">
           Add new
