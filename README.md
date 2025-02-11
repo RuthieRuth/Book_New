@@ -65,3 +65,7 @@ Fork this project and solve the tickets one by one by creating a branch for each
     As a user, I want the `SinglePage` component to match the style of the rest of the application for a seamless experience.  
   - **Task**:  
     Use Material-UI to style the `SinglePage` component, ensuring it aligns with the application's existing design.
+
+- ## SonarCloud Badge
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=RuthieRuth_Book_New&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=RuthieRuth_Book_New)

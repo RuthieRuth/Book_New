@@ -33,6 +33,9 @@ function Header() {
                     <Button color="inherit" variant="text" component={Link} to="/addnew">
                         Test Tab
                     </Button>
+                    <Button color="inherit" variant="text" component={Link} to="/addnew">
+                        Test Bucket
+                    </Button>
                 </Toolbar>
             </AppBar>
         </Box>
