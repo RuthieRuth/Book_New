@@ -30,6 +30,9 @@ function Header() {
                     <Button color="inherit" variant="text" component={Link} to="/addnew">
                         Add New
                     </Button>
+                    <Button color="inherit" variant="text" component={Link} to="/addnew">
+                        Test Tab
+                    </Button>
                 </Toolbar>
             </AppBar>
         </Box>
